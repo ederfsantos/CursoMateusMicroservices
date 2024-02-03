@@ -20,6 +20,11 @@ public class PagamentoService {
     private final PagamentoRepository repository;
     private final ModelMapper modelMapper;
 
+    /**
+     * Método realiza uma listagem de todos os objetos
+     * corresponentes ao objeto solicitado no banco de dados.
+     * @return
+     */
     public List<PagamentoDto> getAll(){
         return repository.findAll()
                 .stream()
@@ -27,12 +32,24 @@ public class PagamentoService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Método recebe um id e realiza a busca por o objeto
+     * correspondente no banco de dados.
+     * @param id
+     * @return
+     */
     public PagamentoDto getByID(Long id){
         Optional<Pagamento> optionalPagamento = repository.findById(id);
         Pagamento pagamento = optionalPagamento.orElseThrow(EntityNotFoundException::new);
         return modelMapper.map(pagamento,PagamentoDto.class);
     }
 
+    /**
+     * Método realiza a persistencia do objeto
+     * na base de dados.
+     * @param dto
+     * @return
+     */
     public PagamentoDto createPagamento(PagamentoDto dto){
 
         Pagamento pagamento = modelMapper.map(dto,Pagamento.class);
@@ -42,6 +59,14 @@ public class PagamentoService {
 
 
     }
+
+    /**
+     * Método recebe por parametro um id e um objeto dto
+     * para ser realizado um update na base de dados.
+     * @param id
+     * @param dto
+     * @return
+     */
     public PagamentoDto updatePagamento(Long id,PagamentoDto dto){
         Pagamento pagamento = modelMapper.map(dto,Pagamento.class);
         pagamento.setId(id);
@@ -50,6 +75,11 @@ public class PagamentoService {
 
     }
 
+    /**
+     * Método recebe um id e realiza a exclusão
+     * do objeto correspondente no banco de dados.
+     * @param id
+     */
     public void deletePagamento(Long id){
         repository.deleteById(id);
     }
