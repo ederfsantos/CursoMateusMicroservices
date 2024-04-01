@@ -1,13 +1,12 @@
-CREATE TABLE pagamentos(
-
-  id BIGINT AUTO_INCREMENT PRIMARY KEY,
-  valor DECIMAL(19,2) NOT NULL,
-  nome VARCHAR(100) NOT NULL,
-  numero VARCHAR(19) NOT NULL,
-  expiracao VARCHAR(7) NOT NULL,
-  codigo VARCHAR(3) NOT NULL,
-  status VARCHAR(255) NOT NULL,
-  pedidoId BIGINT(20) NOT NULL,
-  formaDePagamentoId BIGINT(20) NOT NULL
-
+CREATE TABLE pagamentos (
+                            id bigint(20) NOT NULL AUTO_INCREMENT,
+                            valor decimal(19,2) NOT NULL,
+                            nome varchar(100) DEFAULT NULL,
+                            numero varchar(19) DEFAULT NULL,
+                            expiracao varchar(7) DEFAULT NULL,
+                            codigo varchar(3) DEFAULT NULL,
+                            status varchar(255) NOT NULL,
+                            forma_de_pagamento_id bigint(20) NOT NULL,
+                            pedido_id bigint(20) NOT NULL,
+                            PRIMARY KEY (id)
 );
